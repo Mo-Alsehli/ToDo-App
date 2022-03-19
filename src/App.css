@@ -1,38 +1,270 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --Bright-Blue: hsl(220, 98%, 61%);
+  --Check-Background: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%))
+    hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+  /* Light Theme */
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+  --Light-Grayish-Blue: hsl(233, 11%, 84%);
+  --Dark-Grayish-Blue: hsl(236, 9%, 61%);
+  --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+  /* Dark Theme */
+  --Very-Dark-Blue: hsl(235, 21%, 11%);
+  --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+  --Light-Grayish-Blue: hsl(234, 39%, 85%);
+  --Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+  --Dark-Grayish-Blue: hsl(234, 11%, 52%);
+  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+  --Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul {
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  background: url("../public/images/bg-desktop-dark.jpg");
+  background-size: 100% 35%;
+  background-repeat: no-repeat;
+  background-position: top left;
+  object-fit: cover;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: var(--Very-Dark-Blue);
+}
+
+.container {
+  width: 40%;
+  height: 85%;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  background-color: transparent;
+  color: #fff;
+}
+
+.header h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6rem;
+}
+
+.header svg {
+  cursor: pointer;
+}
+
+.input-form {
+  width: 100%;
+  padding: 12px 15px;
+  background: var(--Very-Dark-Desaturated-Blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 4px 7px 15px 0px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.input-form .checkbox {
+  margin-right: 5px;
+}
+
+.task-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  color: #fff;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06rem;
+  caret-color: var(--Bright-Blue);
+}
+
+.task-input:focus {
+  outline: none;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  background-image: sparent;
+  border: 1px solid hsl(234, 11%, 52%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border 0.3s ease-in-out 0s;
+}
+
+input[type="checkbox"]:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bolder;
+  content: "\f00c";
   color: white;
+  font-size: 11px;
+  display: none;
 }
 
-.App-link {
-  color: #61dafb;
+input[type="checkbox"]:checked {
+  background: linear-gradient(250deg, #57ddff 0%, #c058f3 100%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+.tasklist-wrapper {
+  background: var(--Very-Dark-Desaturated-Blue);
+  max-height: 28rem;
+  padding: 0.6rem 0;
+  box-shadow: 4px 7px 15px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.tasklist-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tasklist-wrapper::-webkit-scrollbar-track {
+  background-color: var(--Light-Grayish-Blue);
+  box-shadow: 0 0 2px inset;
+}
+
+.tasklist-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--Dark-Grayish-Blue);
+  border-radius: 5px;
+}
+
+.task {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  color: var(--Light-Grayish-Blue);
+  padding: 15px;
+  background-color: transparent;
+  font-size: 1.25rem;
+}
+
+.task:hover input[type="checkbox"] {
+  border: 1px solid;
+  border-color: #c058f3;
+}
+
+.task-checked {
+  color: var(--Dark-Grayish-Blue);
+  text-decoration: line-through;
+}
+
+.task:hover .cross {
+  display: block;
+}
+
+.task div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkbox {
+  margin-right: 15px;
+}
+
+.cross {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  display: none;
+  margin-right: 10px;
+}
+
+.underline {
+  content: "";
+  width: 100%;
+  height: 1.5px;
+  background: var(--Dark-Grayish-Blue);
+  margin-bottom: 0.6rem;
+  opacity: 0.6;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem;
+}
+
+.footer p {
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  color: var(--Dark-Grayish-Blue);
+}
+
+.footer div {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  margin-right: -4rem;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--Dark-Grayish-Blue);
+  font-size: 0.9rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.03rem;
+}
+
+.btn:hover {
+  color: var(--Very-Light-Gray);
+}
+
+.active {
+  color: var(--Bright-Blue);
+}
+
+.active:hover {
+  color: var(--Bright-Blue);
+}
+
+.no-tasks {
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 1rem 0;
+  padding-top: 1.5rem;
+  text-decoration: line-through;
+  opacity: 0.8;
+  text-shadow: 2px 2px 2px rgb(116, 110, 110);
+  margin-bottom: 1rem;
 }
