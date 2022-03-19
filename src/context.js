@@ -38,6 +38,15 @@ const getLocalCompleted = () => {
     return [];
   }
 };
+const getLocalTheme = () => {
+  let theme = "dark-theme";
+
+  if (localStorage.getItem("theme")) {
+    theme = localStorage.getItem("theme");
+  }
+
+  return theme;
+};
 
 export const AppProvider = ({ children }) => {
   const [tasks, setTasks] = useState(getLocalTasks());
@@ -49,6 +58,11 @@ export const AppProvider = ({ children }) => {
   const [allBtn, setAllBtn] = useState(true);
   const [activeBtn, setActiveBtn] = useState(false);
   const [completedBtn, setCompletedBtn] = useState(false);
+  const [theme, setTheme] = useState(getLocalTheme());
+
+  const toggleTheme = () => {
+    theme === "dark-theme" ? setTheme("light-theme") : setTheme("dark-theme");
+  };
 
   const addTask = () => {
     setTasks([...tasks, { task, id: uuidv4() }]);
@@ -124,6 +138,9 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("completed", JSON.stringify(completed));
   }, [completed]);
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <AppContext.Provider
@@ -144,6 +161,8 @@ export const AppProvider = ({ children }) => {
         activeBtn,
         completedBtn,
         active,
+        theme,
+        toggleTheme,
       }}
     >
       {children}

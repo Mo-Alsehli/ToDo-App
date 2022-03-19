@@ -34,10 +34,25 @@ body {
   font-family: "Josefin Sans", sans-serif;
 }
 
+.light-theme {
+  --color-main-bcg: hsl(0, 0%, 98%);
+  --color-cont-bcg: hsl(236, 33%, 92%);
+  --font-color-input: hsl(235, 21%, 11%);
+  --task-color: hsl(233, 14%, 35%);
+  --bcg-img: url("../public/images/bg-desktop-light.jpg");
+}
+.dark-theme {
+  --color-main-bcg: hsl(235, 21%, 11%);
+  --color-cont-bcg: hsl(235, 24%, 19%);
+  --font-color-input: hsl(0, 0%, 98%);
+  --task-color: hsl(233, 11%, 84%);
+  --bcg-img: url("../public/images/bg-desktop-dark.jpg");
+}
+
 main {
   width: 100%;
   height: 100vh;
-  background: url("../public/images/bg-desktop-dark.jpg");
+  background: var(--bcg-img);
   background-size: 100% 35%;
   background-repeat: no-repeat;
   background-position: top left;
@@ -45,7 +60,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--Very-Dark-Blue);
+  background-color: var(--color-main-bcg);
 }
 
 .container {
@@ -75,7 +90,7 @@ main {
 .input-form {
   width: 100%;
   padding: 12px 15px;
-  background: var(--Very-Dark-Desaturated-Blue);
+  background: var(--color-cont-bcg);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,7 +109,7 @@ main {
   border: none;
   background-color: transparent;
   padding: 8px;
-  color: #fff;
+  color: var(--font-color-input);
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.1rem;
   letter-spacing: 0.06rem;
@@ -139,7 +154,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .tasklist-wrapper {
-  background: var(--Very-Dark-Desaturated-Blue);
+  background: var(--color-cont-bcg);
   max-height: 28rem;
   padding: 0.6rem 0;
   box-shadow: 4px 7px 15px 0px rgba(0, 0, 0, 0.3);
@@ -166,7 +181,7 @@ input[type="checkbox"]:checked:after {
   display: flex;
   justify-content: space-between;
   text-align: center;
-  color: var(--Light-Grayish-Blue);
+  color: var(--task-color);
   padding: 15px;
   background-color: transparent;
   font-size: 1.25rem;
@@ -238,13 +253,13 @@ input[type="checkbox"]:checked:after {
   color: var(--Dark-Grayish-Blue);
   font-size: 0.9rem;
   font-family: "Josefin Sans", sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   letter-spacing: 0.03rem;
 }
 
 .btn:hover {
-  color: var(--Very-Light-Gray);
+  color: var(--font-color-input);
 }
 
 .active {
@@ -258,7 +273,7 @@ input[type="checkbox"]:checked:after {
 .no-tasks {
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--font-color-input);
   font-size: 1.3rem;
   font-weight: 700;
   padding: 1rem 0;
